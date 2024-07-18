@@ -6,9 +6,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 __DOT_HOME="$XDG_DATA_HOME/dotfiles.zsh"
 
-if [ -d "$HOME/.local/bin" ]; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 if [ -d "$__DOT_HOME/profile.d" ]; then
     for i in "$__DOT_HOME/profile.d"/*.zsh; do

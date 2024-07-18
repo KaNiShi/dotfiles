@@ -14,21 +14,11 @@ ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
 [ ! -d "$ZINIT_HOME/.git" ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
-if [ -d "$__DOT_HOME/site-functions" ]; then
-    export FPATH="$__DOT_HOME/site-functions:$FPATH"
-fi
+[ -d "$__DOT_HOME/site-functions" ] && export FPATH="$__DOT_HOME/site-functions:$FPATH"
+[ -d "$__DOT_HOME/functions" ] && export FPATH="$__DOT_HOME/functions:$FPATH"
 
-if [ -d "$__DOT_HOME/functions" ]; then
-    export FPATH="$__DOT_HOME/functions:$FPATH"
-fi
-
-if [ -d "$XDG_DATA_HOME/zsh/site-functions" ]; then
-    export FPATH="$XDG_DATA_HOME/zsh/site-functions:$FPATH"
-fi
-
-if [ -d "$XDG_DATA_HOME/zsh/functions" ]; then
-    export FPATH="$XDG_DATA_HOME/zsh/functions:$FPATH"
-fi
+[ -d "$XDG_DATA_HOME/zsh/site-functions" ] && export FPATH="$XDG_DATA_HOME/zsh/site-functions:$FPATH"
+[ -d "$XDG_DATA_HOME/zsh/functions" ] && export FPATH="$XDG_DATA_HOME/zsh/functions:$FPATH"
 
 if [ -d "$__DOT_HOME/rc.d" ]; then
     for i in "$__DOT_HOME/rc.d"/*.zsh; do
