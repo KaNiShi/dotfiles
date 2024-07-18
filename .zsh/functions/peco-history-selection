@@ -1,0 +1,10 @@
+emulate -L zsh
+
+PECO_RESULT=$(fc -lnr 1 | awk '! set[$0]++' | peco --query "$LBUFFER")
+
+if [ -n "$PECO_RESULT" ]; then
+    BUFFER=$PECO_RESULT
+    CURSOR=${#BUFFER}
+fi
+
+zle reset-prompt
