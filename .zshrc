@@ -20,10 +20,19 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 [ -d "$XDG_DATA_HOME/zsh/site-functions" ] && export FPATH="$XDG_DATA_HOME/zsh/site-functions:$FPATH"
 [ -d "$XDG_DATA_HOME/zsh/functions" ] && export FPATH="$XDG_DATA_HOME/zsh/functions:$FPATH"
 
+__source() {
+    typeset compiled="$1.zwc"
+    if [[ ! -r "$compiled" || "$1" -nt "$compiled" ]]; then
+        zcompile "$1"
+    fi
+
+    source "$1"
+}
+
 if [ -d "$__DOT_HOME/rc.d" ]; then
     for i in "$__DOT_HOME/rc.d"/*.zsh; do
         if [ -r $i ]; then
-            () { source $i }
+            __source $i
         fi
     done
     unset i
@@ -32,11 +41,13 @@ fi
 if [ -d "$XDG_DATA_HOME/.zsh/rc.d" ]; then
     for i in "$XDG_DATA_HOME/.zsh/rc.d"/*.zsh; do
         if [ -r $i ]; then
-            () { source $i }
+            __source $i
         fi
     done
     unset i
 fi
+
+unfunction __source
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice depth=1; zinit light zsh-users/zsh-syntax-highlighting
