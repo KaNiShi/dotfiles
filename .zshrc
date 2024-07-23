@@ -47,8 +47,6 @@ if [ -d "$XDG_DATA_HOME/.zsh/rc.d" ]; then
     unset i
 fi
 
-unfunction __source
-
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice depth=1; zinit light zsh-users/zsh-syntax-highlighting
 zinit ice depth=1; zinit light zsh-users/zsh-autosuggestions
@@ -62,3 +60,5 @@ autoload -Uz compinit && compinit -i
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || __source ~/.p10k.zsh
+
+unfunction __source
