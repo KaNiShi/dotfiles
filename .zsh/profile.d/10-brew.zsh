@@ -8,5 +8,4 @@ fi
 
 if [ -n "${BREW_PATH:+1}" ]; then
     eval "$("$BREW_PATH" shellenv zsh)"
-    export HOMEBREW_NO_AUTO_UPDATE=1
 fi
