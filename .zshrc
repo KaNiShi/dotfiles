@@ -3,11 +3,6 @@ XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 
 __DOT_HOME="$XDG_DATA_HOME/dotfiles.zsh"
 
-# Enable Powerlevel10k instant prompt.
-if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Init Zinit
 ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
 [ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"
