@@ -24,10 +24,14 @@ __source() {
     source "$1"
 }
 
+__source_snippet() {
+    zinit ice lucid wait link atload'zicompinit; zicdreplay'; zinit snippet "$1"
+}
+
 if [ -d "$__DOT_HOME/rc.d" ]; then
     for i in "$__DOT_HOME/rc.d"/*.zsh; do
         if [ -r $i ]; then
-            __source $i
+            __source_snippet $i
         fi
     done
     unset i
@@ -36,17 +40,17 @@ fi
 if [ -d "$XDG_DATA_HOME/.zsh/rc.d" ]; then
     for i in "$XDG_DATA_HOME/.zsh/rc.d"/*.zsh; do
         if [ -r $i ]; then
-            __source $i
+            __source_snippet $i
         fi
     done
     unset i
 fi
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit ice depth=1; zinit light zsh-users/zsh-syntax-highlighting
-zinit ice depth=1; zinit light zsh-users/zsh-autosuggestions
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
+zinit ice depth=1 lucid wait; zinit light zdharma-continuum/fast-syntax-highlighting
+zinit ice depth=1 lucid wait atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
+zinit ice lucid wait; zinit snippet OMZL::git.zsh
+zinit ice lucid wait; zinit snippet OMZP::git
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete _approximate _prefix
@@ -59,4 +63,4 @@ autoload -Uz compinit && compinit -i
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || __source ~/.p10k.zsh
 
-unfunction __source
+unfunction __source __source_snippet
