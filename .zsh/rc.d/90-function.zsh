@@ -18,7 +18,7 @@ if (( $+commands[aws] )); then
         if [[ -z "$1" ]]; then
             unset AWS_PROFILE
             echo AWS profile cleared.
-        return
+            return
         fi
 
         export AWS_PROFILE=$1
