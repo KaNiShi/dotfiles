@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+[ -n "$ANYENV_DEBUG" ] && set -x
+
+no_rehash_arg=""
+for args in "$@"
+do
+  if [ "$args" = "--no-rehash" ]; then
+    no_rehash_arg="--no-rehash"
+    shift
+  fi
+done
+
+shell="$1"
+if [ -z "$shell" ]; then
+  shell="$(basename "$SHELL")"
+fi
+
+ANYENV_INIT_CACHE_HOME="$ANYENV_ROOT/init-cache"
+
+[ ! -d "$ANYENV_INIT_CACHE_HOME" ] && mkdir -p "$ANYENV_INIT_CACHE_HOME"
+
+$(anyenv-init - "$no_rehash_arg" > "$ANYENV_INIT_CACHE_HOME/anyenv-init.$shell")

@@ -20,5 +20,11 @@ ln -vnsf "$_SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
 ln -vnsf "$_SCRIPT_DIR/.zprofile" "$HOME/.zprofile"
 ln -vnsf "$_SCRIPT_DIR/zsh" "$XDG_DATA_HOME/dotfiles.zsh"
 
+if (( $+commands[anyenv] )); then
+    ANYENV_ROOT="$(anyenv root)"
+    [ ! -d "$ANYENV_ROOT/plugins" ] && mkdir -pv "$ANYENV_ROOT/plugins"
+    ln -vnsf "$_SCRIPT_DIR/utils/anyenv/anyenv-init-cache" "$ANYENV_ROOT/plugins/anyenv-init-cache"
+fi
+
 echo '### Remove oldfiles. ###'
 [ -L "$HOME/.p10k.zsh" ] && unlink "$HOME/.p10k.zsh" && echo "Unlinked: $HOME/.p10k.zsh"
