@@ -6,9 +6,10 @@ XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 _SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 
 echo 'Backup exists files.'
-[[ -f "$HOME/.zshrc" && ! -L "$HOME/.zshrc" ]] && mv -v "$HOME/.zshrc" "$_SCRIPT_DIR/zsh/backups/"
-[[ -f "$HOME/.zprofile" && ! -L "$HOME/.zprofile" ]] && mv -v "$HOME/.zprofile" "$_SCRIPT_DIR/zsh/backups/"
-[[ -f "$HOME/.p10k.zsh" && ! -L "$HOME/.p10k.zsh" ]] && mv -v "$HOME/.p10k.zsh" "$_SCRIPT_DIR/zsh/backups/"
+NOW=$(date +%Y%m%d%H%M%S)
+[[ -f "$HOME/.zshrc" && ! -L "$HOME/.zshrc" ]] && mv -v "$HOME/.zshrc" "$HOME/.zshrc"
+[[ -f "$HOME/.zprofile" && ! -L "$HOME/.zprofile" ]] && mv -v "$HOME/.zprofile" "$HOME/.zprofile.$NOW"
+[[ -f "$HOME/.p10k.zsh" && ! -L "$HOME/.p10k.zsh" ]] && mv -v "$HOME/.p10k.zsh" "$HOME/.p10k.zsh.$NOW"
 
 if [ ! -d "$XDG_DATA_HOME" ]; then
     echo "Create $XDG_DATA_HOME"
