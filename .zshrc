@@ -60,7 +60,6 @@ zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
 autoload -Uz compinit && compinit -i
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || __source ~/.p10k.zsh
+[ -f "$__DOT_HOME/.p10k.zsh" ] && __source "$__DOT_HOME/.p10k.zsh"
 
 unfunction __source __source_snippet
