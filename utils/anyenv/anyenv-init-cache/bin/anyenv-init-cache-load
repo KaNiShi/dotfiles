@@ -10,6 +10,6 @@ fi
 
 ANYENV_INIT_CACHE="$ANYENV_ROOT/init-cache/anyenv-init.$shell"
 
-[ ! -f "$ANYENV_INIT_CACHE" ] && $(anyenv-env "$shell")
+[ ! -f "$ANYENV_INIT_CACHE" ] && $(anyenv-init-cache-make "$shell")
 
 cat "$ANYENV_INIT_CACHE"
