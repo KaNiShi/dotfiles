@@ -28,3 +28,5 @@ fi
 
 echo '### Remove oldfiles. ###'
 [ -L "$HOME/.p10k.zsh" ] && unlink "$HOME/.p10k.zsh" && echo "Unlinked: $HOME/.p10k.zsh"
+
+echo '\e[32mInstall success.\e[m'
