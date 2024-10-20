@@ -9,11 +9,11 @@ ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
 [ ! -d "$ZINIT_HOME/.git" ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
-[ -d "$__DOT_HOME/site-functions" ] && export FPATH="$__DOT_HOME/site-functions:$FPATH"
-[ -d "$__DOT_HOME/functions" ] && export FPATH="$__DOT_HOME/functions:$FPATH"
+[ -d "$__DOT_HOME/site-functions" ] && FPATH="$__DOT_HOME/site-functions:$FPATH"
+[ -d "$__DOT_HOME/functions" ] && FPATH="$__DOT_HOME/functions:$FPATH"
 
-[ -d "$XDG_DATA_HOME/zsh/site-functions" ] && export FPATH="$XDG_DATA_HOME/zsh/site-functions:$FPATH"
-[ -d "$XDG_DATA_HOME/zsh/functions" ] && export FPATH="$XDG_DATA_HOME/zsh/functions:$FPATH"
+[ -d "$XDG_DATA_HOME/zsh/site-functions" ] && FPATH="$XDG_DATA_HOME/zsh/site-functions:$FPATH"
+[ -d "$XDG_DATA_HOME/zsh/functions" ] && FPATH="$XDG_DATA_HOME/zsh/functions:$FPATH"
 
 __source() {
     typeset compiled="$1.zwc"
@@ -25,7 +25,7 @@ __source() {
 }
 
 __source_snippet() {
-    zinit ice lucid wait link atload'zicompinit; zicdreplay'; zinit snippet "$1"
+    zinit ice lucid wait link; zinit snippet "$1"
 }
 
 if [ -d "$__DOT_HOME/rc.d" ]; then
@@ -46,19 +46,18 @@ if [ -d "$XDG_DATA_HOME/.zsh/rc.d" ]; then
     unset i
 fi
 
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit ice depth=1 lucid wait; zinit light zdharma-continuum/fast-syntax-highlighting
-zinit ice depth=1 lucid wait atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
 zinit ice lucid wait; zinit snippet OMZL::git.zsh
 zinit ice lucid wait; zinit snippet OMZP::git
+
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1 lucid wait atinit'zicompinit; zicdreplay'; zinit light zdharma-continuum/fast-syntax-highlighting
+zinit ice depth=1 lucid wait atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete _approximate _prefix
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
-
-autoload -Uz compinit && compinit -i
 
 [ -f "$__DOT_HOME/.p10k.zsh" ] && __source "$__DOT_HOME/.p10k.zsh"
 
