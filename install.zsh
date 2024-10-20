@@ -2,7 +2,10 @@
 
 set -eu
 
+XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+ZSH_CACHE_DIR=${ZSH_CACHE_DIR:-$XDG_CACHE_HOME/zsh}
+
 _SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 
 echo '### Backup exists files. ###'
@@ -10,9 +13,13 @@ NOW=$(date +%Y%m%d%H%M%S)
 [[ -f "$HOME/.zshrc" && ! -L "$HOME/.zshrc" ]] && mv -v "$HOME/.zshrc" "$HOME/.zshrc"
 [[ -f "$HOME/.zprofile" && ! -L "$HOME/.zprofile" ]] && mv -v "$HOME/.zprofile" "$HOME/.zprofile.$NOW"
 
+echo '### Create directories. ###'
 if [ ! -d "$XDG_DATA_HOME" ]; then
-    echo "Create $XDG_DATA_HOME"
-    mkdir -p "$XDG_DATA_HOME"
+    mkdir -vp "$XDG_DATA_HOME"
+fi
+
+if [ ! -d "$ZSH_CACHE_DIR" ]; then
+    mkdir -vp "$ZSH_CACHE_DIR"
 fi
 
 echo '### Install dotfiles. ###'
