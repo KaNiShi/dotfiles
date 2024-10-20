@@ -1,0 +1,10 @@
+emulate -L zsh
+
+FZF_RESULT=$(cdr -l | awk '! set[$2]++ { print $2 }' | fzf --layout reverse --no-sort --bind ctrl-r:toggle-sort --query "$LBUFFER")
+
+if [ -n "$FZF_RESULT" ]; then
+    BUFFER="cd $FZF_RESULT"
+    CURSOR=${#BUFFER}
+fi
+
+zle reset-prompt

@@ -4,6 +4,8 @@ ZSH_CACHE_DIR=${ZSH_CACHE_DIR:-$XDG_CACHE_HOME/zsh}
 
 __DOT_HOME="$XDG_DATA_HOME/dotfiles.zsh"
 
+autoload -Uz add-zsh-hook
+
 # Init Zinit
 ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
 [ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"

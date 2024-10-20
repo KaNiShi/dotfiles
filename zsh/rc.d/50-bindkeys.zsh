@@ -34,8 +34,10 @@ __addbinding "^[[B" down-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && __addbinding ${key[Down]} down-line-or-beginning-search
 
 if (( $+commands[fzf] )); then
+    __addbinding "^F" fzf-cdr-selection
     __addbinding "^R" fzf-history-selection
 elif (( $+commands[peco] )); then
+    __addbinding "^F" peco-cdr-selection
     __addbinding "^R" peco-history-selection
 fi
 
