@@ -1,3 +1,12 @@
+finddss() {
+    dir=${1:-.}
+    find "$dir" -name ".DS_Store"
+}
+
+rmdss() {
+    finddss "$1" | xargs rm -v
+}
+
 if [ -d '/run/WSL' ]; then
     fix_wsl2_interop() {
         for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
