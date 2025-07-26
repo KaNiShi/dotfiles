@@ -1,10 +1,6 @@
 alias mktempdir='mktemp -d'
 alias cdmktempdir='cd `mktemp -d`'
 
-if (( $+commands[apt] )); then
-    alias apt='sudo apt'
-fi
-
 if (( $+commands[brew] )); then
     alias brewf='brew list --formula | xargs -P`expr $(nproc) - 1` -I{} sh -c '\''brew uses --installed {} | wc -l | xargs printf "%20s is used by %2d formulae.\n" {}'\'
 fi
