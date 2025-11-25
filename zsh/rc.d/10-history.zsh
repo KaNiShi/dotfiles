@@ -1,3 +1,6 @@
+export HISTFILE="$ZDOTDIR/.zsh_history"
+export HISTSIZE=50000
+export SAVEHIST=10000
 
 alias history='fc -lDt "%Y-%m-%d %H:%M:%S"'
 

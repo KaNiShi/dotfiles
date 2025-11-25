@@ -31,23 +31,24 @@ __source_snippet() {
     zinit ice lucid wait link; zinit snippet "$1"
 }
 
-if [ -d "$__DOT_HOME/rc.d" ]; then
-    for i in "$__DOT_HOME/rc.d"/*.zsh; do
-        if [ -r $i ]; then
-            __source_snippet $i
-        fi
+for i in "$__DOT_HOME/rc.d"/*.zsh; do
+    __source $i
+done
+unset i
+
+if [ -d "$XDG_DATA_HOME/.zsh/rc.d" ]; then
+    for i in "$XDG_DATA_HOME/.zsh/rc.d"/*.zsh; do
+        __source $i
     done
     unset i
 fi
 
-if [ -d "$XDG_DATA_HOME/.zsh/rc.d" ]; then
-    for i in "$XDG_DATA_HOME/.zsh/rc.d"/*.zsh; do
-        if [ -r $i ]; then
-            __source_snippet $i
-        fi
-    done
-    unset i
-fi
+for i in "$__DOT_HOME/rc.lazy.d"/*.zsh; do
+    if [ -r $i ]; then
+        __source_snippet $i
+    fi
+done
+unset i
 
 zinit ice lucid wait; zinit snippet OMZL::git.zsh
 zinit ice lucid wait; zinit snippet OMZP::git
@@ -55,12 +56,6 @@ zinit ice lucid wait; zinit snippet OMZP::git
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice depth=1 lucid wait atinit'zicompinit; zicdreplay'; zinit light zdharma-continuum/fast-syntax-highlighting
 zinit ice depth=1 lucid wait atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
-
-zstyle ':completion:*' menu select
-zstyle ':completion:*' completer _complete _approximate _prefix
-zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
 [ -f "$__DOT_HOME/.p10k.zsh" ] && __source "$__DOT_HOME/.p10k.zsh"
 

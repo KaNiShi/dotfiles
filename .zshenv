@@ -14,6 +14,6 @@ skip_global_compinit=1
 
 case "${TERMINAL_PROFILE}" in
     *)
-        ZDOTDIR="${ZDOTDIR}"
+        ZDOTDIR="${__DOT_HOME}/profiles/default"
         ;;
 esac
