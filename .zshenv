@@ -13,6 +13,9 @@ __DOT_HOME="$XDG_DATA_HOME/dotfiles.zsh"
 skip_global_compinit=1
 
 case "${TERMINAL_PROFILE}" in
+    COPILOT)
+        ZDOTDIR="${__DOT_HOME}/profiles/copilot"
+        ;;
     *)
         ZDOTDIR="${__DOT_HOME}/profiles/default"
         ;;
