@@ -60,8 +60,8 @@ zinit ice lucid wait; zinit snippet OMZL::git.zsh
 zinit ice lucid wait; zinit snippet OMZP::git
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit ice depth=1 lucid wait atinit'zicompinit; zicdreplay'; zinit light zdharma-continuum/fast-syntax-highlighting
-zinit ice depth=1 lucid wait atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
+
+zinit ice depth=1 lucid wait atinit'zicompinit; zicdreplay' atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
 
 [ -f "$__DOT_HOME/.p10k.zsh" ] && __source "$__DOT_HOME/.p10k.zsh"
 
