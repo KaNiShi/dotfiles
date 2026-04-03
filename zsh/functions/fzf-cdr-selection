@@ -1,6 +1,14 @@
 emulate -L zsh
 
-FZF_RESULT=$(cdr -l | awk '! set[$2]++ { print $2 }' | fzf --layout reverse --no-sort --bind ctrl-r:toggle-sort --query "$LBUFFER")
+local PREVIEW_OPTION=()
+
+if (( $+commands[tree] )); then
+    PREVIEW_OPTION=(--preview "tree -a -C -L 2 '{}'" --preview-window 'right:50%')
+else
+    PREVIEW_OPTION=(--preview "ls --color=always -a '{}'" --preview-window 'right:50%')
+fi
+
+FZF_RESULT=$(cdr -l | awk '! set[$2]++ { print $2 }' | fzf --layout reverse --no-sort --bind ctrl-r:toggle-sort "${PREVIEW_OPTION[@]}")
 
 if [ -n "$FZF_RESULT" ]; then
     BUFFER="cd $FZF_RESULT"
