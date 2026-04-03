@@ -31,7 +31,7 @@ __source_snippet() {
     zinit ice lucid wait link; zinit snippet "$1"
 }
 
-if [ -n "$(ls -A "$__DOT_HOME/rc.d")" ]; then
+if [[ -d "$__DOT_HOME/rc.d" && -n "$(ls -A "$__DOT_HOME/rc.d")" ]]; then
     for i in "$__DOT_HOME/rc.d"/*.zsh; do
         if [ -r $i ]; then
             __source $i
@@ -40,14 +40,14 @@ if [ -n "$(ls -A "$__DOT_HOME/rc.d")" ]; then
     unset i
 fi
 
-if [ -d "$XDG_DATA_HOME/.zsh/rc.d" ]; then
+if [[ -d "$XDG_DATA_HOME/.zsh/rc.d" && -n "$(ls -A "$XDG_DATA_HOME/.zsh/rc.d")" ]]; then
     for i in "$XDG_DATA_HOME/.zsh/rc.d"/*.zsh; do
         __source $i
     done
     unset i
 fi
 
-if [ -n "$(ls -A "$__DOT_HOME/rc.lazy.d")" ]; then
+if [[ -d "$__DOT_HOME/rc.lazy.d" && -n "$(ls -A "$__DOT_HOME/rc.lazy.d")" ]]; then
     for i in "$__DOT_HOME/rc.lazy.d"/*.zsh; do
         if [ -r $i ]; then
             __source_snippet $i
