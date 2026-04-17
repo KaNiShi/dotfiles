@@ -20,3 +20,5 @@ case "${TERMINAL_PROFILE}" in
         ZDOTDIR="${__DOT_HOME}/profiles/default"
         ;;
 esac
+
+export ZDOTDIR
