@@ -40,8 +40,8 @@ if [[ -d "$__DOT_HOME/rc.d" && -n "$(ls -A "$__DOT_HOME/rc.d")" ]]; then
     unset i
 fi
 
-if [[ -d "$XDG_DATA_HOME/.zsh/rc.d" && -n "$(ls -A "$XDG_DATA_HOME/.zsh/rc.d")" ]]; then
-    for i in "$XDG_DATA_HOME/.zsh/rc.d"/*.zsh; do
+if [[ -d "$XDG_DATA_HOME/zsh/rc.d" && -n "$(ls -A "$XDG_DATA_HOME/zsh/rc.d")" ]]; then
+    for i in "$XDG_DATA_HOME/zsh/rc.d"/*.zsh; do
         __source $i
     done
     unset i
