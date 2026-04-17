@@ -11,8 +11,8 @@ for i in "$__DOT_HOME/profile.d"/*.zsh; do
 done
 unset i
 
-if [ -d "$XDG_DATA_HOME/.zsh/profile.d" ]; then
-    for i in "$XDG_DATA_HOME/.zsh/profile.d"/*.zsh; do
+if [ -d "$XDG_DATA_HOME/zsh/profile.d" ]; then
+    for i in "$XDG_DATA_HOME/zsh/profile.d"/*.zsh; do
         () { source $i }
     done
     unset i
